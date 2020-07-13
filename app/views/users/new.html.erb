@@ -1,0 +1,7 @@
+<%= form_for(@user) do |t| %>
+  <%= t.label :username, 'Please Enter Username' %>
+  <%= t.text_field :username %>
+  <%= t.label :email, 'Please Enter Email' %>
+  <%= t.email_field :email %>
+  <%= t.submit 'Sign Up' %>
+<% end %>
