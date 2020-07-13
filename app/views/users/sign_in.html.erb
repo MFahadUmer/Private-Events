@@ -1,5 +1,10 @@
-<%= form_for @user do |f| %>
-  <%= f.label :username, 'Please Enter Username' %>
-  <%= f.text_field :username %>
-  <%= f.submit 'Sign In' %>
+<% if session[:current_user] %>
+  <%= session[:current_user] %>
+  <%= link_to "Logout", user_logout_path %>
+<%else %>
+  <%= form_tag sign_in_path, :method => 'get' do %>
+    <%= label_tag :username, 'Please enter Username' %>
+    <%= text_field_tag :username, params[:username] %>
+    <%= submit_tag "Login" %>
+  <% end %>
 <% end %>

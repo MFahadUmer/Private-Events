@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users  = User.all
+    @users = User.all
   end
 
   def show
@@ -19,12 +19,15 @@ class UsersController < ApplicationController
   end
 
   def sign_in
-    @user = User.find_by(params[:username])
+    @user = User.where("username like ?", "#{params[:username]}")
     if @user.exists?
-      redirect_to user_path(@user)
-    else
-      redirect_to users_path
+      session[:current_user] = params[:username]
     end
+  end
+
+  def user_logout
+    session.destroy
+    redirect_to users_path
   end
 
   private
