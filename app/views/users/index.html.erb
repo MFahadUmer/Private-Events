@@ -1,6 +1,8 @@
 <% if session[:current_user] %>
-  <%= session[:current_user] %>
+<%= link_to session[:current_user], user_path(:current_user) %>
   <%= link_to "Logout", user_logout_path %>
 <%else %>
   <%= link_to "Login", sign_in_path %>
 <%end %>
+
+<%= link_to 'New Events', new_event_path %>

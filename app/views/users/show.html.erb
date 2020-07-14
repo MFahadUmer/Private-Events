@@ -1,4 +1,6 @@
-<%= @user.username %>
-<%= @user.email %>
+<% @events.each do |i| %>
+  <%= i.creator %>
+  <%= i.event %>
+<% end %>
 
 <%= link_to "Index Page", users_path %>
