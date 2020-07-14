@@ -4,8 +4,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @user = User.find(params[:id])
-    @events = Event.all
+    @user = User.find(params[:id])
   end
 
   def new
@@ -20,9 +19,10 @@ class UsersController < ApplicationController
   end
 
   def sign_in
-    @user = User.where("username like ?", "#{params[:username]}")
-    if @user.exists?
-      session[:current_user] = params[:username]
+    # @user = User.where("username like ?", "#{params[:username]}")
+    @user = User.find_by(username: params[:username])
+    if @user
+      session[:current_user] = @user.id
     end
   end
 

@@ -1,6 +1,5 @@
-<% @events.each do |i| %>
-  <%= i.creator %>
-  <%= i.event %>
-<% end %>
-
+<% @user.events.each do |c| %>
+  <%= c.creator %> <br />
+<%= c.event %> <br />
+  <%end %>
 <%= link_to "Index Page", users_path %>

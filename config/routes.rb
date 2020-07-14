@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   # resources :users, only: [:show, :create, :new]
   resources :users
   resources :events
+  resources :sign_in
   root 'users#index'
 end

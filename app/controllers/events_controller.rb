@@ -1,12 +1,27 @@
 class EventsController < ApplicationController
+
+  def index
+    @events = Event.all
+  end
+
+  def show
+    @event = Event.find(params[:id])
+  end
+
     def new
-      @party = Event.new
+      @event = Event.new
     end
 
     def create
-      @party = Event.new(event_params)
-      @party.creator = session[:current_user]
-      @party.save
+      @current_user = session[:current_user]
+      # @event = Event.User.build(event_params)
+      # @post = current_user.posts.build(post_params)
+
+      @event = @current_user.events.build(event_params)
+      # @event = session[:current_user].event.build(event_params)
+      if @event.save
+        redirect_to events_path
+      end
     end
 
     private
