@@ -13,16 +13,22 @@ class EventsController < ApplicationController
     end
 
     def create
-      @current_user = session[:current_user]
+      # @current_user = session[:current_user]
       # @event = Event.User.build(event_params)
       # @post = current_user.posts.build(post_params)
+      @event = current_user.creator_events.build(event_params)
 
-      @event = @current_user.events.build(event_params)
-      # @event = session[:current_user].event.build(event_params)
+      # @event.creator = session[:current_user]
+      # @event.save
       if @event.save
         redirect_to events_path
       end
     end
+
+  def current_user
+    current_user = User.find_by(username: session[:current_user])
+    current_user
+  end
 
     private
 
